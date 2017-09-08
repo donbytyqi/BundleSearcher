@@ -31,10 +31,10 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         return bundleID.count
     }
     
-    func tableViewDoubleClick(_ sender:AnyObject) {
+    @objc func tableViewDoubleClick(_ sender:AnyObject) {
         let row = tableView.clickedRow
         if tableView.clickedRow >= 0 {
-            let pasteboard = NSPasteboard.general()
+            let pasteboard = NSPasteboard.general
             pasteboard.clearContents()
             pasteboard.writeObjects([bundleID[row] as NSPasteboardWriting])
         }
@@ -69,7 +69,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        let cell = tableView.make(withIdentifier: "cell", owner: self) as! NSTableCellView
+        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "cell"), owner: self) as! NSTableCellView
         cellImageView = cell.viewWithTag(2) as! NSImageView
         cellImageView.image = images[row]
         cell.textField?.stringValue = bundleID[row]
